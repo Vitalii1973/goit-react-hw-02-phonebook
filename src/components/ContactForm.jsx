@@ -21,7 +21,7 @@ const ContactForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit}>
       <label>
         Name:
         <input type="text" value={name} onChange={handleNameChange} required />
