@@ -1,45 +1,55 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './Buttons.css';
 
-const ContactForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
-  const handleNameChange = e => {
-    setName(e.target.value);
+class ContactForm extends Component {
+  state = {
+    name: '',
+    number: '',
   };
 
-  const handleNumberChange = e => {
-    setNumber(e.target.value);
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
   };
 
-  const handleSubmit = e => {
+  handleNumberChange = e => {
+    this.setState({ number: e.target.value });
+  };
+
+  handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number });
-    setName('');
-    setNumber('');
+    this.props.onSubmit(this.state);
+    this.setState({ name: '', number: '' });
   };
 
-  return (
-    <form className="contact-form" onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} required />
-      </label>
-      <label>
-        Number:
-        <input
-          type="tel"
-          value={number}
-          onChange={handleNumberChange}
-          required
-        />
-      </label>
-      <button className="addContactButton" type="submit">
-        Add contact
-      </button>
-    </form>
-  );
-};
+  render() {
+    const { name, number } = this.state;
+
+    return (
+      <form className="contact-form" onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={this.handleNameChange}
+            required
+          />
+        </label>
+        <label>
+          Number:
+          <input
+            type="tel"
+            value={number}
+            onChange={this.handleNumberChange}
+            required
+          />
+        </label>
+        <button className="addContactButton" type="submit">
+          Add contact
+        </button>
+      </form>
+    );
+  }
+}
 
 export default ContactForm;

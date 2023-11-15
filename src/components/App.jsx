@@ -1,4 +1,3 @@
-// App.jsx
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
@@ -41,7 +40,6 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
-
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );

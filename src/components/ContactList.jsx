@@ -1,19 +1,22 @@
-// ContactList.jsx
-import React from 'react';
+import React, { Component } from 'react';
 import ContactListItem from './ContactListItem';
 
-const ContactList = ({ contacts, onDeleteContact }) => {
-  return (
-    <ul>
-      {contacts.map(contact => (
-        <ContactListItem
-          key={contact.id}
-          contact={contact}
-          onDeleteContact={onDeleteContact}
-        />
-      ))}
-    </ul>
-  );
-};
+class ContactList extends Component {
+  render() {
+    const { contacts, onDeleteContact } = this.props;
+
+    return (
+      <ul>
+        {contacts.map(contact => (
+          <ContactListItem
+            key={contact.id}
+            contact={contact}
+            onDeleteContact={onDeleteContact}
+          />
+        ))}
+      </ul>
+    );
+  }
+}
 
 export default ContactList;
